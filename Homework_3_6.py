@@ -1,8 +1,8 @@
 
-import requests
 import json
 import os
 
+import requests
 from colorama import Fore
 
 
@@ -23,7 +23,7 @@ def show_menu():
 def get_random_activity():
     os.system('cls' if os.name == 'nt' else 'clear')
     response = requests.get(
-        url="https://bored-api.appbrewery.com/random", timeout=10)
+        url="https://bored-api.appbrewery.com/random", )
     if response.status_code == 200:
         data = response.json()
         activity = data.get('activity', 'No activity found.').title()
@@ -67,7 +67,7 @@ def get_activity_by_type():
     activity_type = activity_map.get(user_input)
     if activity_type:
         response = requests.get(
-            f"https://bored-api.appbrewery.com/filter?type={activity_type}", timeout=10)
+            f"https://bored-api.appbrewery.com/filter?type={activity_type}", )
         if response.status_code == 200:
             data = response.json()
             if isinstance(data, list) and data:
@@ -91,7 +91,7 @@ def get_activity_by_participants():
     print(Fore.BLUE+"Get Activity by Participants (Number of People 1, 2, 3, 4, 5, 8)")
     num = int(input("Enter number of participants: "+Fore.RESET))
     response = requests.get(
-        f"https://bored-api.appbrewery.com/filter?participants={num}", timeout=10)
+        f"https://bored-api.appbrewery.com/filter?participants={num}",)
     if response.status_code == 200:
         data = response.json()
         if isinstance(data, list) and data:
